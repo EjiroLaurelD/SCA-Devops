@@ -60,3 +60,10 @@ sudo systemctl start nginx
 
 # enable Nginx service to start at boot
 sudo systemctl enable nginx
+
+# Set up daily cron job for backup (excluding logs)
+echo "0 0 * * * sudo rsync -avz --delete --exclude=logs/ /etc/nginx/ ~/nginx_backup" | crontab -
+
+echo "Nginx $nginx_version installed and configured successfully!"
+
+exit 0
