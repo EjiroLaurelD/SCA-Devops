@@ -25,7 +25,6 @@ cd nginx-${nginx_version}
 make && sudo make install
 
 # create an Nginx systemd service unit
-#sudo cat << EOF > "$temp_dir/nginx.service"
 sudo bash -c 'cat > /etc/systemd/system/nginx.service' <<EOF
 [Unit]
 Description=The NGINX HTTP and reverse proxy server
