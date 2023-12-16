@@ -3,6 +3,7 @@
 WARNING="\e[31m"
 SUCCESS="\e[32m"
 CLEAR="\e[1;33m"
+hashed_password=$(hash_password "$password")
 
 echo "Welcome to Laurels High School!"
 echo "Kindly create your account"
@@ -68,8 +69,9 @@ fi
 function validate_password {
   if [[ ${#password} -ge 8 && "$password" =~ [[:punct:]] && $password =~ [[:upper:]] && $password =~ [[:lower:]] && $password =~ [[:digit:]] && $password == $password2 ]]; then
     echo -e "$SUCCESS Password is strong!"$CLEAR
+    # Create user with username and hashed password
+    sudo useradd -m "$username" -p "$hashed_password"
     echo "Account created successfully!"
-    sudo useradd -m -p $username "$password"
     echo -e "Username: $username"
     echo -e "User ID: $(id -u "$username")"
   else
