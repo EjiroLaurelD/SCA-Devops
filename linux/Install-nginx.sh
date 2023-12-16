@@ -8,6 +8,9 @@ download_url="https://nginx.org/download/nginx-${nginx_version}.tar.gz"
 sudo apt update && sudo apt upgrade -y
 sudo apt install build-essential libpcre3 libpcre3-dev zlib1g libgd-dev zlib1g-dev libssl-dev cron -y
 
+# Create Nginx user and group
+sudo groupadd -r nginx && sudo useradd -r -g nginx nginx
+
 # Download Nginx source code
 wget $download_url
 
